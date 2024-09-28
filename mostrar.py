@@ -2,7 +2,7 @@ def mostrar_productos(inventario:list[list])->None:
     '''
     descripcion: Muestra por pantalla todos los inventario del momento
                  producto , cantidad y precio
-    argumento: recibe lista de lista inventario
+    argumento: recibe lista de lista inventario tipo list[list]
     return : retorna None 
     '''
     print(f"{' ':>10}*{'-'*51}*")

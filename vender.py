@@ -1,9 +1,21 @@
 
+from code import interact
 import os
 from mostrar import mostrar_productos as mostrar_stock
+from validacion import solicitar_cadena as string,solicitar_entero as integer
  
  
 def vender_productos(inventario:list[list])->list[list]:
+    '''
+    descripcion:recibe el inventario por parametro 
+                se utilizara mostrar en tiempo real por pantalla mientra que se le preguntara
+                al usuario que desea vender de lo que esta disponible y si esta disponible se vendera
+                entonce con la lista de inventario la cantidad disponible y se modificara descontado la cantidad
+                , se preguntara si se desea seguir vendiendo hasta que diga que no y se retornara la lista
+                inventario modificada o no
+    argumento:recibe inventario:list[list] lista de lista
+    return: retorna inventario:list[list]
+    '''
 
     entrar = True
     while entrar: 
@@ -15,8 +27,7 @@ def vender_productos(inventario:list[list])->list[list]:
 
         producto = input('Ingrese el producto que sea vender: ')
     
-        #            nombre  cantidad   precio
-        #
+         
         se_encontro_el_producto = False
 
         for i in range(len(inventario)):
@@ -25,7 +36,7 @@ def vender_productos(inventario:list[list])->list[list]:
                 se_encontro_el_producto = True
 
                 if inventario[i][1] > 0:    
-                    cantidad = int(input('La cantida que desea: '))
+                    cantidad = integer('Ingrese la cantidad vas a vender: ',1,100)
                     total_pagar = round(inventario[i][2] * cantidad)
             
                 if  inventario[i][1] >= cantidad:
@@ -43,9 +54,9 @@ def vender_productos(inventario:list[list])->list[list]:
         if se_encontro_el_producto == False:
             print('El producto solicitado no existe o esta mal escrito ')
 
-        pregunta_para_salir = input('Para continuar vendiendo apretar c(continuar) o s(para salir de este menu)')
+        pregunta_para_salir = string('Para continuar vendiendo apretar c(continuar) o s(para salir de este menu)',1)
         while pregunta_para_salir != 's' and pregunta_para_salir != 'c':
-            pregunta_para_salir = input('Para continuar vendiendo apretar c(continuar) o s(para salir de este menu)')
+            pregunta_para_salir = string('Para continuar vendiendo apretar c(continuar) o s(para salir de este menu)',1)
         if pregunta_para_salir == 'c':
             input('Presione un Boton para continuar...')
             os.system('cls')
